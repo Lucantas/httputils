@@ -1,4 +1,4 @@
-module lucantas/httputils
+module github.com/lucantas/httputils
 
 go 1.12
 
