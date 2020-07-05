@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -32,6 +33,10 @@ func Fetch(url string, params ...map[string]interface{}) *Response {
 func (resp *Response) Then() *Response {
 	resp.r = <-resp.rChannel
 	return resp
+}
+
+func (resp *Response) BodyReader() io.ReadCloser {
+	return resp.r.Body
 }
 
 func (resp *Response) Body() *Response {
