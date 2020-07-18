@@ -128,6 +128,10 @@ func getBody(p map[string]interface{}) *strings.Reader {
 			if s, ok := i.(string); ok {
 				return strings.NewReader(s)
 			}
+
+			if bs, ok := i.([]byte); ok {
+				return strings.NewReader(string(bs))
+			}
 		}
 	}
 	return nil
