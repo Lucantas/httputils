@@ -2,6 +2,7 @@ package httputils
 
 import (
 	"encoding/json"
+	"encoding/xml"
 	"errors"
 	"fmt"
 	"io"
@@ -66,6 +67,10 @@ func (resp *Response) String() string {
 
 func (resp *Response) JSON(v interface{}) (*Response, error) {
 	return resp, json.Unmarshal(resp.body, &v)
+}
+
+func (resp *Response) XML(v interface{}) (*Response, error) {
+	return resp, xml.Unmarshal(resp.body, &v)
 }
 
 func (resp *Response) Catch() *Response {
